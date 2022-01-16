@@ -26,7 +26,7 @@ pub struct ValueError {
 ///
 #[derive(Serialize)]
 pub struct ValueErrors {
-    errors: Vec<Error>,
+    errors: ValueError,
 }
 
 impl ValueErrors {
