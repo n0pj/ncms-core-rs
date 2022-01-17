@@ -36,7 +36,7 @@ pub struct ValueError {
 ///
 #[derive(Debug, Clone, Serialize)]
 pub struct ValueErrors {
-    errors: Vec<ValueError>,
+    pub errors: Vec<ValueError>,
 }
 
 impl ValueErrors {
