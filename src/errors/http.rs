@@ -3,10 +3,20 @@ use serde_json::Value;
 use std::collections::HashMap;
 use std::fmt;
 
-#[derive(Serialize)]
+#[derive(Debug, Clone, Serialize)]
+pub struct Location {
+    pub line: Option<String>,
+    pub column: Option<String>,
+}
+
+pub type Data = Vec<HashMap<String, String>>;
+
+#[derive(Debug, Clone, Serialize)]
 pub struct ValueError {
+    pub property: Option<String>,
+    pub location: Option<Location>,
     pub message: String,
-    pub data: Vec<HashMap<String, String>>,
+    pub data: Option<Data>,
 }
 
 ///
@@ -24,17 +34,24 @@ pub struct ValueError {
 /// }
 /// ```
 ///
-#[derive(Serialize)]
+#[derive(Debug, Clone, Serialize)]
 pub struct ValueErrors {
     errors: Vec<ValueError>,
 }
 
 impl ValueErrors {
-    pub fn new(message: &str) -> Self {
+    pub fn new(
+        property: Option<String>,
+        location: Option<Location>,
+        message: String,
+        data: Option<Data>,
+    ) -> Self {
         Self {
             errors: vec![ValueError {
-                message: message.to_owned(),
-                data: vec![],
+                property,
+                location,
+                message,
+                data,
             }],
         }
     }
@@ -45,7 +62,7 @@ impl ValueErrors {
 }
 
 /// 使用するエラー群
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub enum Errors {
     InternalServerError,
 }
