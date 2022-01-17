@@ -24,8 +24,9 @@ pub struct ValueError {
 /// {
 ///     "errors": [
 ///          {
+///              "property": "key",
+///              "location": {"line": 2, "column": 4},
 ///              "message": "Could not open connection to the database",
-///              "locations": [{"line": 2, "column": 4}],
 ///              "data": {
 ///                  "internal_error": "Connection refused"
 ///              }
@@ -39,21 +40,21 @@ pub struct ValueErrors {
     pub errors: Vec<ValueError>,
 }
 
-impl ValueErrors {
-    pub fn new(
-        property: Option<String>,
-        location: Option<Location>,
-        message: String,
-        data: Option<Data>,
-    ) -> Self {
+/// implementation for ValueError default
+impl Default for ValueError {
+    fn default() -> Self {
         Self {
-            errors: vec![ValueError {
-                property,
-                location,
-                message,
-                data,
-            }],
+            property: None,
+            location: None,
+            message: "".to_owned(),
+            data: None,
         }
+    }
+}
+
+impl ValueErrors {
+    pub fn new(errors: Vec<ValueError>) -> Self {
+        Self { errors: errors }
     }
 
     pub fn to_value(self) -> Value {
