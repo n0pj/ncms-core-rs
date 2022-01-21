@@ -18,7 +18,6 @@ impl Password {
         let password_hash = argon2
             .hash_password(raw_password.as_bytes(), &salt)?
             .to_string();
-        println!("{}", password_hash);
 
         Ok(password_hash)
     }
