@@ -1,6 +1,7 @@
 pub mod authentications;
 pub mod errors;
 pub mod http;
+pub mod models;
 pub mod mysql;
 
 #[cfg(test)]
