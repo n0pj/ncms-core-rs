@@ -34,3 +34,30 @@ impl Password {
             .is_ok())
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn vverify_password_failed() {
+        let saved_password = "passwords";
+        let saved_password = Password::gen_password_hash(&saved_password).unwrap();
+
+        let input_password = "password";
+        let result = Password::verify_password(input_password, &saved_password);
+
+        assert_eq!(result.unwrap(), false);
+    }
+
+    #[test]
+    fn vverify_password_pass() {
+        let saved_password = "password";
+        let saved_password = Password::gen_password_hash(&saved_password).unwrap();
+
+        let input_password = "password";
+        let result = Password::verify_password(input_password, &saved_password);
+
+        assert_eq!(result.unwrap(), true);
+    }
+}
