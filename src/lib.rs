@@ -1,4 +1,4 @@
-pub mod authentication;
+pub mod authentications;
 pub mod errors;
 pub mod http;
 pub mod mysql;
