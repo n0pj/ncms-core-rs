@@ -39,3 +39,10 @@ impl fmt::Display for Order {
         write!(f, "{:?}", self)
     }
 }
+
+///
+/// DB のテーブルのモデルに対して実装するメソッド
+///
+pub trait ModelMethods<T> {
+    fn save(&self) -> T;
+}
