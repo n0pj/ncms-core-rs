@@ -43,7 +43,8 @@ impl fmt::Display for Order {
 ///
 /// DB のテーブルの作成モデル ( New ) に対して実装するメソッド
 ///
-pub trait ModelMethods<T> {
-    fn save(&self) -> T;
-    fn to_model(&self) -> T;
+pub trait ModelMethods<M, R> {
+    fn save(&self) -> M;
+    fn to_model(&self) -> M;
+    fn to_res(&self) -> R;
 }
