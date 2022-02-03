@@ -50,7 +50,8 @@ pub trait ModelMethods<R> {
 ///
 /// DB のテーブルの作成モデル ( New ) に対して実装するメソッド
 ///
-pub trait NewModelMethods<M, R> {
+pub trait NewModelMethods<M> {
     fn save(&self) -> M;
+    fn update(&self) -> M;
     fn to_model(&self) -> M;
 }
