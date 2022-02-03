@@ -53,5 +53,4 @@ pub trait ModelMethods<R> {
 pub trait NewModelMethods<M, R> {
     fn save(&self) -> M;
     fn to_model(&self) -> M;
-    fn to_res(&self) -> R;
 }
