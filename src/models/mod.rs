@@ -51,7 +51,7 @@ pub trait ModelMethods<R, E> {
 /// DB のテーブルの作成モデル ( New ) に対して実装するメソッド
 ///
 pub trait NewModelMethods<M, E> {
+    fn to_model(&self) -> Result<M, E>;
     fn save(&self) -> Result<M, E>;
     fn update(&self) -> Result<M, E>;
-    fn to_model(&self) -> Result<M, E>;
 }
