@@ -1,5 +1,5 @@
 // ReExport GoogleAuthenticator
-pub use google_authenticator::GoogleAuthenticator;
+pub use google_authenticator::*;
 
 #[cfg(test)]
 mod tests {
