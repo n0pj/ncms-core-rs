@@ -7,10 +7,10 @@ mod tests {
 
     #[test]
     fn verify_code() {
-        let secret = "JBSWY3DPEHPK3PXP";
         let auth = GoogleAuthenticator::new();
-        let code = auth.get_code(secret, 0).unwrap();
+        let secret = auth.create_secret(32);
+        let code = auth.get_code(&secret, 0).unwrap();
 
-        assert!(auth.verify_code(secret, code.as_str(), 1, 0))
+        assert!(auth.verify_code(&secret, &code, 1, 0))
     }
 }
