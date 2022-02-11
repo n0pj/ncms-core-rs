@@ -1,2 +1,2 @@
-pub mod api_auth;
+pub mod common;
 pub mod google_authenticator;
