@@ -45,7 +45,6 @@ impl fmt::Display for Order {
 ///
 pub trait Model<M, R, E> {
     fn to_res(&self) -> Result<R, E>;
-    fn update(&self) -> Result<M, E>;
 }
 
 ///
@@ -54,6 +53,9 @@ pub trait Model<M, R, E> {
 pub trait NewModel<M, N, E> {
     fn to_model(&self) -> Result<M, E>;
     fn insert(&self) -> Result<M, E>;
+
+    /// update する際は、API の引数ですべてを受け取り、その受け取った引数から NewModel を作成して update
+    fn update(&self) -> Result<M, E>;
 }
 
 ///
