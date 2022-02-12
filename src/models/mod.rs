@@ -43,15 +43,20 @@ impl fmt::Display for Order {
 ///
 /// DB のテーブルの作成モデル ( Fetch ) に対して実装するメソッド
 ///
-pub trait ModelMethods<R, E> {
+pub trait Model<M, R, E> {
     fn to_res(&self) -> Result<R, E>;
+    fn update(&self) -> Result<M, E>;
 }
 
 ///
 /// DB のテーブルの作成モデル ( New ) に対して実装するメソッド
 ///
-pub trait NewModelMethods<M, E> {
+pub trait NewModel<M, N, E> {
     fn to_model(&self) -> Result<M, E>;
-    fn save(&self) -> Result<M, E>;
-    fn update(&self) -> Result<M, E>;
+    fn insert(&self) -> Result<M, E>;
 }
+
+///
+/// Model のデータを返すための Model
+///
+pub trait ResponseModel {}
