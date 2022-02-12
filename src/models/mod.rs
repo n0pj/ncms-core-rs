@@ -43,7 +43,7 @@ impl fmt::Display for Order {
 ///
 /// DB のテーブルの取得モデル ( Fetch ) に対して実装するメソッド
 ///
-pub trait Model<M, R, E> {
+pub trait Model<R, E> {
     fn to_res(&self) -> Result<R, E>;
 }
 
