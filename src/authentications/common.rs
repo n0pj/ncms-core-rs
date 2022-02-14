@@ -35,7 +35,7 @@ pub fn verify_password(
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Claims {
-    pub user_id: String,
+    pub user_uuid: String,
     pub iat: i64,
     pub exp: i64,
 }
@@ -45,7 +45,7 @@ pub struct Claims {
 /// ```rust
 /// #[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
 /// pub struct Claims {
-///     pub user_id: String,
+///     pub user_uuid: String,
 ///     pub iat: i64,
 ///     pub exp: i64,
 /// }
@@ -60,7 +60,7 @@ pub fn gen_jwt_token<T: Serialize>(
     // let now = Utc::now();
     // let iat = now.clone().timestamp();
     // let exp = (now + chrono::Duration::days(30)).timestamp();
-    // let claims = Claims { user_id, iat, exp };
+    // let claims = Claims { user_uuid, iat, exp };
 
     header.typ = Some(typ.unwrap_or("JWT".to_string()));
 
@@ -112,7 +112,7 @@ mod tests {
     #[test]
     fn gen_jwt_token_pass() {
         let claims = Claims {
-            user_id: "test".to_owned(),
+            user_uuid: "test".to_owned(),
             iat: 1,
             exp: 2,
         };
@@ -128,7 +128,7 @@ mod tests {
     #[test]
     fn verify_jwt_token_pass() {
         let claims = Claims {
-            user_id: "test".to_owned(),
+            user_uuid: "test".to_owned(),
             iat: 1,
             exp: 9999999999,
         };
@@ -145,7 +145,7 @@ mod tests {
     #[test]
     fn verify_jwt_token_failed() {
         let claims = Claims {
-            user_id: "test".to_owned(),
+            user_uuid: "test".to_owned(),
             iat: 1,
             exp: 9999999999,
         };
