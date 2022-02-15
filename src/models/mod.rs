@@ -1,3 +1,5 @@
+pub mod header;
+
 use juniper::GraphQLInputObject;
 use serde::Serialize;
 use std::fmt;
