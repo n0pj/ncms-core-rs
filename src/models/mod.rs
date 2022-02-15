@@ -1,5 +1,8 @@
 pub mod header;
 
+// ReExports
+pub use header::*;
+
 use juniper::GraphQLInputObject;
 use serde::Serialize;
 use std::fmt;
