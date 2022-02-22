@@ -3,6 +3,7 @@ pub mod database;
 pub mod http;
 pub mod validation;
 
+use juniper::{graphql_value, Value};
 use serde::{Deserialize, Serialize};
 use std::fmt::Display;
 
@@ -33,4 +34,24 @@ impl Error {
     pub fn to_string(&self) -> String {
         serde_json::to_string(&self.to_value()).unwrap()
     }
+
+    pub fn to_graphql_value(&self) -> Value {
+        let property = self.property.clone();
+        let code = self.code.clone();
+        let message = self.message.clone();
+
+        graphql_value!({
+            "property": property,
+            "code": code,
+            "message": message,
+        })
+    }
+}
+
+#[test]
+fn tests() {
+    let error = Error::new("property", "code", "message");
+    let _value = error.to_value();
+    let _string = error.to_string();
+    let _graphql_value = error.to_graphql_value();
 }
