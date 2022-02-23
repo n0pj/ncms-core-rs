@@ -1,4 +1,4 @@
-use juniper::ScalarValue;
+use juniper::{GraphQLValue, ScalarValue};
 use serde::{de, de::StdError, Deserialize, Serialize};
 use std::fmt;
 
@@ -9,6 +9,19 @@ pub enum CustomScalarValue {
     Int(i32),
     BigInt(i64),
     String(String),
+}
+
+impl GraphQLValue for CustomScalarValue {
+    type Context = ();
+    type TypeInfo = CustomScalarValue;
+
+    fn type_name<'i>(&self, info: &'i Self::TypeInfo) -> Option<&'i str> {
+        match info {
+            CustomScalarValue::Int(_) => Some("Int"),
+            CustomScalarValue::BigInt(_) => Some("BigInt"),
+            CustomScalarValue::String(_) => Some("String"),
+        }
+    }
 }
 
 impl std::convert::From<i32> for CustomScalarValue {
