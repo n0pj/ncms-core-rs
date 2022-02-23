@@ -69,3 +69,10 @@ pub trait NewModel<M, N, E> {
 /// Model のデータを返すための Model
 ///
 pub trait ResponseModel {}
+
+#[derive(Debug, Clone, Serialize)]
+pub struct ResPagination {
+    pub limit: String,
+    pub offset: String,
+    pub total: String,
+}
