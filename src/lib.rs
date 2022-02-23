@@ -1,6 +1,7 @@
 pub mod authentications;
 pub mod db;
 pub mod errors;
+pub mod graphql;
 pub mod http;
 pub mod models;
 pub mod utils;
