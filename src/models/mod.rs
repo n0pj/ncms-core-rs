@@ -70,7 +70,7 @@ pub trait NewModel<M, N, E> {
 ///
 pub trait ResponseModel {}
 
-#[derive(Debug, Clone, Serialize)]
+#[derive(Debug, Clone, Serialize, GraphQLObject)]
 pub struct ResPagination {
     pub limit: String,
     pub offset: String,

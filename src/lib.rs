@@ -1,3 +1,6 @@
+#[macro_use]
+extern crate juniper;
+
 pub mod authentications;
 pub mod db;
 pub mod errors;
