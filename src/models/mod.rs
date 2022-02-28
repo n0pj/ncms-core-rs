@@ -11,14 +11,14 @@ use std::fmt;
 #[derive(Debug, Clone, GraphQLInputObject, Serialize)]
 pub struct ArgPagination {
     pub limit: Option<i32>,
-    pub offset: Option<i32>,
+    pub page: Option<i32>,
 }
 
 impl Default for ArgPagination {
     fn default() -> Self {
         Self {
             limit: None,
-            offset: None,
+            page: None,
         }
     }
 }
@@ -73,6 +73,6 @@ pub trait ResponseModel {}
 #[derive(Debug, Clone, Serialize, GraphQLObject)]
 pub struct ResPagination {
     pub limit: String,
-    pub offset: String,
+    pub page: String,
     pub total: String,
 }
